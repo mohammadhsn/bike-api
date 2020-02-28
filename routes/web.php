@@ -8,3 +8,5 @@ use Laravel\Lumen\Routing\Router;
 $router->get('/', function () use ($router) {
     return response()->json(['version' => $router->app->version()]);
 });
+
+$router->post('officers', 'OfficerController@store');
