@@ -3,6 +3,7 @@
 
 namespace Test\Integration;
 
+use App\Models\Officer;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Test\TestCase;
 
@@ -24,9 +25,21 @@ class OfficerTest extends TestCase
     }
 
     /** @test */
-    public function it_requires_name()
+    public function it_requires_name_to_create()
     {
         $this->json('POST', 'officers')
             ->assertResponseStatus(422);
+    }
+
+    /** @test */
+    public function it_removes_existing_officer()
+    {
+        $officer = factory(Officer::class)->create();
+
+        $this->json('DELETE', "officers/{$officer->id}")
+            ->assertResponseStatus(204);
+
+        $this->json('DELETE', "officers/{$officer->id}")
+            ->assertResponseStatus(404);
     }
 }

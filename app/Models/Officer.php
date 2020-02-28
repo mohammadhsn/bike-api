@@ -3,7 +3,6 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -12,5 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Officer extends Model
 {
-    protected $fillable = ['name'];
+    const DEFAULT_STATUS = 'idle';
+
+    protected $fillable = ['name', 'status'];
 }
