@@ -20,7 +20,7 @@ class OfficerTest extends TestCase
 
         $this->seeJson([
             'id' => 1,
-            'name' => 'Ali Kalan'
+            'name' => 'Ali Kalan',
         ]);
     }
 

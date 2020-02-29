@@ -19,7 +19,7 @@ class OfficerController extends Controller
     public function destroy($id)
     {
         Officer::findOrFail($id)->delete();
+
         return response()->json([], 204);
     }
-
 }
