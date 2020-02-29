@@ -11,3 +11,5 @@ $router->get('/', function () use ($router) {
 
 $router->post('officers', 'OfficerController@store');
 $router->delete('officers/{id}', 'OfficerController@destroy');
+
+$router->post('bikes', 'BikeController@store');
