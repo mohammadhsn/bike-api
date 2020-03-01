@@ -17,6 +17,11 @@ class BikeController extends Controller
         $this->request = $request;
     }
 
+    public function index()
+    {
+        return Bike::latest()->paginate(20);
+    }
+
     public function store()
     {
         $this->validate($this->request, [
