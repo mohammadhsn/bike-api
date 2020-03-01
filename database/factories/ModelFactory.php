@@ -1,7 +1,6 @@
 <?php
 
 /** @var Factory $factory */
-
 use App\Models\Bike;
 use App\Models\Officer;
 use Faker\Generator as Faker;
@@ -20,6 +19,6 @@ $factory->define(Bike::class, function (Faker $faker) {
         'color' => $faker->colorName,
         'owner' => $faker->name,
         'description' => $faker->paragraph,
-        'theft_at' => $faker->date()
+        'theft_at' => $faker->date(),
     ];
 });

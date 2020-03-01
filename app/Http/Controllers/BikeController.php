@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\Set\BikeFilterSet;
 use App\Models\Bike;
 use Illuminate\Http\Request;
 
@@ -11,15 +12,24 @@ class BikeController extends Controller
      * @var Request
      */
     private $request;
+    /**
+     * @var BikeFilterSet
+     */
+    private $filterSet;
 
-    public function __construct(Request $request)
+    public function __construct(Request $request, BikeFilterSet $filterSet)
     {
         $this->request = $request;
+        $this->filterSet = $filterSet;
     }
 
     public function index()
     {
-        return Bike::latest()->paginate(20);
+        return $this->filterSet
+            ->setRequest($this->request)
+            ->getBuilder()
+            ->latest()
+            ->paginate(20);
     }
 
     public function store()
