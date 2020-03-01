@@ -5,7 +5,7 @@ namespace Test\Integration;
 
 use App\Models\Officer;
 use Laravel\Lumen\Testing\DatabaseMigrations;
-use Test\TestCase;
+use Test\Utility\TestCase;
 
 class OfficerTest extends TestCase
 {

@@ -2,7 +2,7 @@
 
 namespace Test\Integration;
 
-use Test\TestCase;
+use Test\Utility\TestCase;
 
 class SmokeTest extends TestCase
 {

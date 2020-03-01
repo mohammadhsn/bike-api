@@ -1,11 +1,13 @@
 <?php
 
-namespace Test;
+namespace Test\Utility;
 
 use Exception;
 use Illuminate\Contracts\Debug\ExceptionHandler;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\Console\Application as ConsoleApplication;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 trait InteractsWithExceptionHandling
@@ -13,7 +15,7 @@ trait InteractsWithExceptionHandling
     /**
      * The original exception handler.
      *
-     * @var \Illuminate\Contracts\Debug\ExceptionHandler|null
+     * @var ExceptionHandler|null
      */
     protected $originalExceptionHandler;
 
@@ -73,7 +75,7 @@ trait InteractsWithExceptionHandling
             /**
              * Create a new class instance.
              *
-             * @param  \Illuminate\Contracts\Debug\ExceptionHandler  $originalHandler
+             * @param ExceptionHandler $originalHandler
              * @param  array  $except
              *
              * @return void
@@ -87,9 +89,9 @@ trait InteractsWithExceptionHandling
             /**
              * Report or log an exception.
              *
-             * @param  \Exception  $e
+             * @param Exception $e
              *
-             * @throws \Exception
+             *@throws Exception
              *
              * @return void
              */
@@ -101,7 +103,7 @@ trait InteractsWithExceptionHandling
             /**
              * Determine if the exception should be reported.
              *
-             * @param  \Exception  $e
+             * @param Exception $e
              *
              * @return bool
              */
@@ -113,10 +115,10 @@ trait InteractsWithExceptionHandling
             /**
              * Render an exception into an HTTP response.
              *
-             * @param  \Illuminate\Http\Request  $request
-             * @param  \Exception  $e
+             * @param  Request  $request
+             * @param Exception $e
              *
-             * @throws \Exception
+             *@throws Exception
              *
              * @return \Symfony\Component\HttpFoundation\Response
              */
@@ -142,8 +144,8 @@ trait InteractsWithExceptionHandling
             /**
              * Render an exception to the console.
              *
-             * @param  \Symfony\Component\Console\Output\OutputInterface  $output
-             * @param  \Exception  $e
+             * @param  OutputInterface  $output
+             * @param  Exception $e
              *
              * @return void
              */

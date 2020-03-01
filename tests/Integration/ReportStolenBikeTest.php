@@ -4,7 +4,7 @@
 namespace Test\Integration;
 
 use Laravel\Lumen\Testing\DatabaseMigrations;
-use Test\TestCase;
+use Test\Utility\TestCase;
 
 class ReportStolenBikeTest extends TestCase
 {
