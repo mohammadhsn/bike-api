@@ -4,6 +4,7 @@
 namespace App\Filters\Set;
 
 use App\Filters\Query\ColorFilter;
+use App\Filters\Query\LicenceNumberFilter;
 use App\Filters\Query\OwnerFilter;
 use App\Filters\Query\TheftDateFilter;
 use App\Filters\Query\TypeFilter;
@@ -16,6 +17,7 @@ class BikeFilterSet extends FilterSet
         ColorFilter::class,
         TypeFilter::class,
         TheftDateFilter::class,
+        LicenceNumberFilter::class
     ];
 
     protected function getModel()
