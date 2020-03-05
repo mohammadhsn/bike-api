@@ -3,6 +3,7 @@
 
 namespace Test\Integration;
 
+use App\Models\Officer;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Test\Utility\TestCase;
 
@@ -26,6 +27,15 @@ class ReportStolenBikeTest extends TestCase
 
         $this->assertResponseStatus(201);
         $this->seeJsonStructure(['id'])->seeJson($this->payload);
+    }
+
+    /** @test */
+    public function it_assigns_an_officer_to_bike()
+    {
+        $officer = factory(Officer::class)->create();
+        $this->json('POST', 'bikes', $this->payload);
+
+        $this->seeJson(['officer' => ['id' => $officer->id, 'name' => $officer->name]]);
     }
 
     /** @test */
