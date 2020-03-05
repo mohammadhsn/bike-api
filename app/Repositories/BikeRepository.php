@@ -5,7 +5,9 @@ namespace App\Repositories;
 
 use App\Filters\Set\BikeFilterSet;
 use App\Models\Bike;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class BikeRepository extends BaseRepository
@@ -50,10 +52,18 @@ class BikeRepository extends BaseRepository
             DB::commit();
 
             return $bike;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
 
             return false;
         }
+    }
+
+    public function filter(Request $request)
+    {
+        return $this->filterSet->setRequest($request)
+            ->getBuilder()
+            ->latest()
+            ->paginate($this->peerPage);
     }
 }

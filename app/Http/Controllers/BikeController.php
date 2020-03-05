@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Filters\Set\BikeFilterSet;
 use App\Repositories\BikeRepository;
 use Illuminate\Http\Request;
 
@@ -16,25 +15,16 @@ class BikeController extends Controller
      * @var BikeRepository
      */
     private $repository;
-    /**
-     * @var BikeFilterSet
-     */
-    private $filterSet;
 
-    public function __construct(Request $request, BikeFilterSet $filterSet, BikeRepository $repository)
+    public function __construct(Request $request, BikeRepository $repository)
     {
         $this->request = $request;
-        $this->filterSet = $filterSet;
         $this->repository = $repository;
     }
 
     public function index()
     {
-        return $this->filterSet
-            ->setRequest($this->request)
-            ->getBuilder()
-            ->latest()
-            ->paginate(20);
+        return $this->repository->filter($this->request);
     }
 
     public function store()
