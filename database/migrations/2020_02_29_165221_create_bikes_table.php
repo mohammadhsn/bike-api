@@ -21,6 +21,12 @@ class CreateBikesTable extends Migration
             $table->string('owner');
             $table->text('description');
             $table->date('theft_at');
+            $table->unsignedBigInteger('officer_id')->nullable();
+            $table->foreign('officer_id')
+                ->references('id')
+                ->on('officers')
+                ->onDelete('set null');
+            $table->unique('officer_id');
             $table->timestamps();
         });
     }

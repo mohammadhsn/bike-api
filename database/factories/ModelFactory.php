@@ -20,5 +20,8 @@ $factory->define(Bike::class, function (Faker $faker) {
         'owner' => $faker->name,
         'description' => $faker->paragraph,
         'theft_at' => $faker->date(),
+        'officer_id' => function () {
+            return factory(Officer::class)->create()->id;
+        },
     ];
 });
