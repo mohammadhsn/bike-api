@@ -13,7 +13,7 @@ class OfficerController extends Controller
 
         $officer = Officer::create($request->all());
 
-        return response()->json(['id' => $officer->id, 'name' => $officer->name], 201);
+        return response()->json($officer, 201);
     }
 
     public function destroy($id)

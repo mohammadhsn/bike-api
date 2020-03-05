@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Officer extends Model
 {
-    const DEFAULT_STATUS = 'idle';
+    protected $fillable = ['name'];
 
-    protected $fillable = ['name', 'status'];
+    protected $visible = ['id', 'name'];
 }
