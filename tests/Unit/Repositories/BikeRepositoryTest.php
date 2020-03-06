@@ -27,6 +27,13 @@ class BikeRepositoryTest extends TestCase
     }
 
     /** @test */
+    public function it_doesnt_find_solved_as_pending()
+    {
+        factory(Bike::class)->create(['officer_id' => null, 'found' => true]);
+        $this->assertNull($this->repository->findPending());
+    }
+
+    /** @test */
     public function theft_stores_the_bike()
     {
         $bike = factory(Bike::class)->make(['officer_id' => null]);

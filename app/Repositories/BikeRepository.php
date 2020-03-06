@@ -30,7 +30,10 @@ class BikeRepository extends BaseRepository
 
     public function findPending()
     {
-        return $this->getModel()->whereNull('officer_id')->first();
+        return $this->getModel()
+            ->where('found', false)
+            ->whereNull('officer_id')
+            ->first();
     }
 
     /**

@@ -27,6 +27,7 @@ class CreateBikesTable extends Migration
                 ->on('officers')
                 ->onDelete('set null');
             $table->unique('officer_id');
+            $table->boolean('found')->default(false);
             $table->timestamps();
         });
     }
