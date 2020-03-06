@@ -12,5 +12,6 @@ $router->get('/', function () use ($router) {
 $router->post('officers', 'OfficerController@store');
 $router->delete('officers/{id}', 'OfficerController@destroy');
 
+$router->patch('bikes/{id}', 'BikeController@resolve');
 $router->get('bikes', 'BikeController@index');
 $router->post('bikes', 'BikeController@store');

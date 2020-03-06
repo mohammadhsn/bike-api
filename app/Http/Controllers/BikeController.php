@@ -45,4 +45,13 @@ class BikeController extends Controller
             return response()->json(['message' => 'Cannot store your report'], 500);
         }
     }
+
+    public function resolve($id)
+    {
+        if ($this->repository->resolve($id)) {
+            return response()->json([], 204);
+        }
+
+        return response()->json([], 204);
+    }
 }

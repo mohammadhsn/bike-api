@@ -3,6 +3,7 @@
 
 namespace Test\Integration;
 
+use App\Models\Bike;
 use App\Models\Officer;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Test\Utility\TestCase;
@@ -57,5 +58,23 @@ class ReportStolenBikeTest extends TestCase
         $this->json('POST', 'bikes', $this->payload);
 
         $this->assertResponseStatus(422);
+    }
+
+    /** @test */
+    public function mark_as_found()
+    {
+        $officer = factory(Officer::class)->create();
+        $bike = factory(Bike::class)->create(['officer_id' => $officer->id]);
+
+        $this->json('PATCH', "/bikes/{$bike->id}", ['found' => true]);
+
+        $this->assertResponseStatus(204);
+    }
+
+    /** @test */
+    public function solve_a_non_existing_bike()
+    {
+        $this->json('PATCH', 'bikes/10')
+            ->assertResponseStatus(404);
     }
 }
