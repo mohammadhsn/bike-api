@@ -26,7 +26,16 @@ class StolenBikesListTest extends TestCase
             ->assertResponseOk();
 
         $this->seeJsonStructure(['data' => ['*' => [
-            'id', 'type', 'color', 'owner', 'theft_at', 'licence_number', 'description', 'created_at', 'updated_at',
+            'id',
+            'type',
+            'color',
+            'owner',
+            'theft_at',
+            'found',
+            'licence_number',
+            'description',
+            'created_at',
+            'updated_at',
         ]]]);
     }
 
