@@ -17,16 +17,11 @@ class BikeRepository extends BaseRepository
      * @var BikeFilterSet
      */
     private $filterSet;
-    /**
-     * @var OfficerRepository
-     */
-    private $officerRepository;
 
-    public function __construct(Bike $model, BikeFilterSet $filterSet, OfficerRepository $officerRepository)
+    public function __construct(Bike $model, BikeFilterSet $filterSet)
     {
         parent::__construct($model);
         $this->filterSet = $filterSet;
-        $this->officerRepository = $officerRepository;
     }
 
     public function findPending()
@@ -47,7 +42,7 @@ class BikeRepository extends BaseRepository
         DB::beginTransaction();
 
         try {
-            $officer = $this->officerRepository->findIdle();
+            $officer = $this->getOfficerRepository()->findIdle();
             if ($officer) {
                 $data['officer_id'] = $officer->id;
             }
@@ -102,5 +97,10 @@ class BikeRepository extends BaseRepository
 
             return false;
         }
+    }
+
+    protected function getOfficerRepository(): OfficerRepository
+    {
+        return app(OfficerRepository::class);
     }
 }
