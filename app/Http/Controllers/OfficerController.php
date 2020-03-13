@@ -31,7 +31,6 @@ class OfficerController extends Controller
         }
 
         return response()->json([], 500);
-
     }
 
     public function destroy($id)

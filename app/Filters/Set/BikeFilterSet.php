@@ -17,7 +17,7 @@ class BikeFilterSet extends FilterSet
         ColorFilter::class,
         TypeFilter::class,
         TheftDateFilter::class,
-        LicenceNumberFilter::class
+        LicenceNumberFilter::class,
     ];
 
     protected function getModel()

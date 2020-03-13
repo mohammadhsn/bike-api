@@ -3,7 +3,6 @@
 
 namespace App\Repositories;
 
-
 use App\Models\Officer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -36,10 +35,10 @@ class OfficerRepository extends BaseRepository
                 $officer->load('bike');
             }
             DB::commit();
+
             return $officer;
-
-        } catch (\Exception $e) {}
-
+        } catch (\Exception $e) {
+        }
     }
 
 
@@ -47,5 +46,4 @@ class OfficerRepository extends BaseRepository
     {
         return app(BikeRepository::class);
     }
-
 }
