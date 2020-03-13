@@ -27,6 +27,11 @@ class BikeController extends Controller
         return $this->repository->filter($this->request);
     }
 
+    public function show($id)
+    {
+        return $this->repository->findById($id, 'officer');
+    }
+
     public function store()
     {
         $this->validate($this->request, [

@@ -13,7 +13,7 @@ class ReportStolenBikeTest extends TestCase
     use DatabaseMigrations;
 
     protected $payload = [
-        'licence_number' => '1111111111',
+        'licence_number' => 1111111111,
         'owner' => 'Kalan',
         'color' => 'red',
         'type' => 'bmx',
@@ -27,7 +27,7 @@ class ReportStolenBikeTest extends TestCase
         $this->json('POST', 'bikes', $this->payload);
 
         $this->assertResponseStatus(201);
-        $this->seeJsonStructure(['id'])->seeJson($this->payload);
+        $this->seeJson($this->payload);
     }
 
     /** @test */

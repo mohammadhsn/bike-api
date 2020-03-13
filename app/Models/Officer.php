@@ -14,6 +14,12 @@ class Officer extends Model
 {
     protected $fillable = ['name'];
 
+    protected $visible = [
+        'id',
+        'name',
+        'bike',
+    ];
+
     public function bike()
     {
         return $this->hasOne(Bike::class);

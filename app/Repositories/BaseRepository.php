@@ -27,6 +27,16 @@ abstract class BaseRepository
         return $this->model;
     }
 
+    public function findById($id, ...$relations)
+    {
+        $query = $this->getModel();
+        if ($relations) {
+            $query = $query->with($relations);
+        }
+
+        return $query->findOrFail($id);
+    }
+
     public function create(array $data): Model
     {
         return $this->model->create($data);

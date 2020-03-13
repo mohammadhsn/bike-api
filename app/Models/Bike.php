@@ -32,6 +32,19 @@ class Bike extends Model
 
     protected $casts = [
         'found' => 'bool',
+        'licence_number' => 'int',
+    ];
+
+    protected $visible = [
+        'id',
+        'licence_number',
+        'type',
+        'owner',
+        'color',
+        'description',
+        'theft_at',
+        'found',
+        'officer',
     ];
 
     public function officer()

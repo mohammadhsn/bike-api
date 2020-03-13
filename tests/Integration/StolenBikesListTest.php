@@ -34,8 +34,6 @@ class StolenBikesListTest extends TestCase
             'found',
             'licence_number',
             'description',
-            'created_at',
-            'updated_at',
         ]]]);
     }
 
