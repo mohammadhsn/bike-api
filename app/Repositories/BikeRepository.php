@@ -48,6 +48,14 @@ class BikeRepository extends BaseRepository
             }
             $bike = $this->create($data);
             $bike->load('officer');
+
+            if ($officer) {
+                $this->getAuditRepository()->createFor($bike, [
+                    'type' => 'assign',
+                    'officer' => $officer->toArray(),
+                ]);
+            }
+
             DB::commit();
 
             return $bike;
@@ -102,5 +110,10 @@ class BikeRepository extends BaseRepository
     protected function getOfficerRepository(): OfficerRepository
     {
         return app(OfficerRepository::class);
+    }
+
+    protected function getAuditRepository(): AuditRepository
+    {
+        return app(AuditRepository::class);
     }
 }

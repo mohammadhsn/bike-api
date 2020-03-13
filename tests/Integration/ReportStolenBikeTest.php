@@ -40,6 +40,16 @@ class ReportStolenBikeTest extends TestCase
     }
 
     /** @test */
+    public function it_stores_audit_log()
+    {
+        factory(Officer::class)->create();
+
+        $this->json('POST', 'bikes', $this->payload);
+
+        $this->assertCount(1, Bike::first()->audits);
+    }
+
+    /** @test */
     public function it_validates_payload()
     {
         foreach ($this->payload as $key => $value) {
