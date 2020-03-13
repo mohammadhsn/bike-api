@@ -53,6 +53,17 @@ class BikeRepositoryTest extends TestCase
     }
 
     /** @test */
+    public function theft_persists_audit_log()
+    {
+        $bike = factory(Bike::class)->make(['officer_id' => null]);
+        factory(Officer::class)->create();
+
+        $this->repository->theft($bike->toArray());
+
+        $this->assertCount(1, Bike::first()->audits);
+    }
+
+    /** @test */
     public function it_throws_exception_for_invalid_id()
     {
         $this->expectException(ModelNotFoundException::class);
