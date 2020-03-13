@@ -35,6 +35,20 @@ class BikeRepositoryTest extends TestCase
     }
 
     /** @test */
+    public function it_persists_audit_when_solve_occurs()
+    {
+        $bike = factory(Bike::class)->create();
+        $this->repository->resolve($bike->id);
+
+
+        $this->assertCount(1, $bike->audits);
+        $this->assertEquals($bike->audits->first()->payload, [
+            'type' => 'resolve',
+            'officer' => ['id' => $bike->officer->id, 'name' => $bike->officer->name],
+        ]);
+    }
+
+    /** @test */
     public function theft_stores_the_bike()
     {
         $bike = factory(Bike::class)->make(['officer_id' => null]);

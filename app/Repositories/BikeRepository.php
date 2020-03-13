@@ -80,6 +80,7 @@ class BikeRepository extends BaseRepository
             ->where('id', $id)
             ->whereNotNull('officer_id')
             ->where('found', false)
+            ->with('officer')
             ->first();
 
         if (!$bike) {
@@ -88,13 +89,17 @@ class BikeRepository extends BaseRepository
 
         DB::beginTransaction();
 
-        $officer = $bike->officer_id;
+        $officer = $bike->officer;
 
         try {
             $bike->update(['found' => true, 'officer_id' => null]);
+            $this->getAuditRepository()->createFor($bike, [
+                'type' => 'resolve',
+                'officer' => $officer->toArray(),
+            ]);
 
             if ($pending = $this->findPending()) {
-                $pending->update(['officer_id' => $officer]);
+                $pending->update(['officer_id' => $officer->id]);
             }
 
             DB::commit();
