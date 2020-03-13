@@ -5,6 +5,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property $id
+ * @property $licence_number
+ * @property $type
+ * @property $owner
+ * @property $color
+ * @property $description
+ * @property $theft_at
+ * @property $officer_id
+ * @property $found
+ * @property Officer|null $officer
+ */
 class Bike extends Model
 {
     protected $fillable = [
