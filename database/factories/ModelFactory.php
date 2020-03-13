@@ -1,6 +1,7 @@
 <?php
 
 /** @var Factory $factory */
+use App\Models\Audit;
 use App\Models\Bike;
 use App\Models\Officer;
 use Faker\Generator as Faker;
@@ -23,5 +24,19 @@ $factory->define(Bike::class, function (Faker $faker) {
         'officer_id' => function () {
             return factory(Officer::class)->create()->id;
         },
+    ];
+});
+
+
+$factory->define(Audit::class, function () {
+    return [
+        'auditable_type' => Bike::class,
+        'auditable_id' => function () {
+            return factory(Bike::class)->create(['officer_id' => null]);
+        },
+        'payload' => [
+            'foo' => 'bar',
+            'from' => 'to',
+        ],
     ];
 });

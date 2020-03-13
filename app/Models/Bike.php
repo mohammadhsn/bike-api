@@ -4,6 +4,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 /**
  * @property $id
@@ -16,9 +17,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property $officer_id
  * @property $found
  * @property Officer|null $officer
+ * @property Collection $audits
  */
-class Bike extends Model
+class Bike extends Model implements AuditableInterface
 {
+    use Auditable;
+
     protected $fillable = [
         'licence_number',
         'type',
